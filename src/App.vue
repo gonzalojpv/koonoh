@@ -1,6 +1,6 @@
 <template>
     <metainfo>
-        <template v-slot:title="{ content }">
+        <template #title="{ content }">
             {{ content ? `${content} | ${siteName}` : siteName }}
         </template>
     </metainfo>
@@ -10,7 +10,7 @@
 <script setup>
 import { useMeta } from 'vue-meta'
 
-const siteName = 'Vite App'
+const siteName = 'More'
 
 useMeta({
     title: '',

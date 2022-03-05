@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-full">
-    <Disclosure as="nav" class="bg-white shadow-sm" v-slot="{ open }">
+    <Disclosure v-slot="{ open }" as="nav" class="bg-white shadow-sm">
       <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex">
@@ -26,7 +26,7 @@
                   <img class="w-8 h-8 rounded-full" :src="user.imageUrl" alt="" />
                 </MenuButton>
               </div>
-              <transition enter-active-class="transition ease-out duration-200" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="opacity-0 transform scale-95">
+              <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 transform scale-95" enter-to-class="opacity-100 transform scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="opacity-100 transform scale-100" leave-to-class="opacity-0 transform scale-95">
                 <MenuItems class="absolute right-0 w-48 py-1 mt-2 bg-white shadow-lg origin-top-right rounded-md ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
                     <a :href="item.href" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">{{ item.name }}</a>
@@ -48,7 +48,14 @@
 
       <DisclosurePanel class="sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-          <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href" :class="[item.current ? 'bg-indigo-50 border-indigo-500 text-indigo-700' : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800', 'block pl-3 pr-4 py-2 border-l-4 text-base font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
+          <DisclosureButton 
+            v-for="item in navigation" 
+            :key="item.name" as="a" 
+            :href="item.href" 
+            :class="[item.current ? 'bg-indigo-50 border-indigo-500 text-indigo-700' : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800', 'block pl-3 pr-4 py-2 border-l-4 text-base font-medium']" 
+            :aria-current="item.current ? 'page' : undefined">
+            {{ item.name }}
+          </DisclosureButton>
         </div>
         <div class="pt-4 pb-3 border-t border-gray-200">
           <div class="flex items-center px-4">
@@ -103,7 +110,7 @@ const user = {
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
   { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
+  { name: 'Products', href: '/products', current: false },
   { name: 'Calendar', href: '#', current: false },
 ]
 const userNavigation = [
