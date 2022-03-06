@@ -18,7 +18,9 @@ export default defineConfig({
         vue(),
         eslintPlugin(),
         vitePluginCommonjs(),
-        Pages(),
+        Pages({
+            exclude: ["**/components/*.vue"],
+        }),
         Layouts(),
         ViteComponents(),
     ],

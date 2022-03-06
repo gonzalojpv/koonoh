@@ -3,7 +3,7 @@ module.exports = {
         node: true,
         'vue/setup-compiler-macros': true,
     },
-    extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', 'prettier'],
+    extends: ['eslint:recommended', 'plugin:vue/vue3-recommended'],
     rules: {
         // override/add rules settings here, such as:
         'vue/no-unused-vars': 'error',
@@ -20,15 +20,10 @@ module.exports = {
                 ignores: [
                     'login',
                     'signup',
-                    'dashboard',
-                    'Header',
-                    'terms',
                     'list',
                     'index',
                     'detail',
-                    'privacy',
-                    'donation',
-                    'billing',
+                    'create',
                     '[...all]',
                     'default',
                 ],

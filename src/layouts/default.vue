@@ -1,35 +1,80 @@
 <template>
   <div class="min-h-full">
-    <Disclosure v-slot="{ open }" as="nav" class="bg-white shadow-sm">
+    <Disclosure
+      v-slot="{ open }"
+      as="nav"
+      class="bg-white shadow-sm"
+    >
       <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex">
             <div class="flex items-center flex-shrink-0">
-              <img class="block w-auto h-8 lg:hidden" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
-              <img class="hidden w-auto h-8 lg:block" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow" />
+              <img
+                class="block w-auto h-8 lg:hidden"
+                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                alt="Workflow"
+              >
+              <img
+                class="hidden w-auto h-8 lg:block"
+                src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
+                alt="Workflow"
+              >
             </div>
             <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-              <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>
+              <a
+                v-for="item in navigation"
+                :key="item.name"
+                :href="item.href"
+                :class="[item.current ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium']"
+                :aria-current="item.current ? 'page' : undefined"
+              >{{ item.name }}</a>
             </div>
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:items-center">
-            <button type="button" class="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button
+              type="button"
+              class="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
               <span class="sr-only">View notifications</span>
-              <BellIcon class="w-6 h-6" aria-hidden="true" />
+              <BellIcon
+                class="w-6 h-6"
+                aria-hidden="true"
+              />
             </button>
 
             <!-- Profile dropdown -->
-            <Menu as="div" class="relative ml-3">
+            <Menu
+              as="div"
+              class="relative ml-3"
+            >
               <div>
                 <MenuButton class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   <span class="sr-only">Open user menu</span>
-                  <img class="w-8 h-8 rounded-full" :src="user.imageUrl" alt="" />
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    :src="user.imageUrl"
+                    alt=""
+                  >
                 </MenuButton>
               </div>
-              <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 transform scale-95" enter-to-class="opacity-100 transform scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="opacity-100 transform scale-100" leave-to-class="opacity-0 transform scale-95">
+              <transition
+                enter-active-class="transition ease-out duration-200"
+                enter-from-class="opacity-0 transform scale-95"
+                enter-to-class="opacity-100 transform scale-100"
+                leave-active-class="transition ease-in duration-75"
+                leave-from-class="opacity-100 transform scale-100"
+                leave-to-class="opacity-0 transform scale-95"
+              >
                 <MenuItems class="absolute right-0 w-48 py-1 mt-2 bg-white shadow-lg origin-top-right rounded-md ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-                    <a :href="item.href" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">{{ item.name }}</a>
+                  <MenuItem
+                    v-for="item in userNavigation"
+                    :key="item.name"
+                    v-slot="{ active }"
+                  >
+                    <a
+                      :href="item.href"
+                      :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']"
+                    >{{ item.name }}</a>
                   </MenuItem>
                 </MenuItems>
               </transition>
@@ -39,8 +84,16 @@
             <!-- Mobile menu button -->
             <DisclosureButton class="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               <span class="sr-only">Open main menu</span>
-              <MenuIcon v-if="!open" class="block w-6 h-6" aria-hidden="true" />
-              <XIcon v-else class="block w-6 h-6" aria-hidden="true" />
+              <MenuIcon
+                v-if="!open"
+                class="block w-6 h-6"
+                aria-hidden="true"
+              />
+              <XIcon
+                v-else
+                class="block w-6 h-6"
+                aria-hidden="true"
+              />
             </DisclosureButton>
           </div>
         </div>
@@ -50,29 +103,53 @@
         <div class="pt-2 pb-3 space-y-1">
           <DisclosureButton 
             v-for="item in navigation" 
-            :key="item.name" as="a" 
+            :key="item.name"
+            as="a" 
             :href="item.href" 
             :class="[item.current ? 'bg-indigo-50 border-indigo-500 text-indigo-700' : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800', 'block pl-3 pr-4 py-2 border-l-4 text-base font-medium']" 
-            :aria-current="item.current ? 'page' : undefined">
+            :aria-current="item.current ? 'page' : undefined"
+          >
             {{ item.name }}
           </DisclosureButton>
         </div>
         <div class="pt-4 pb-3 border-t border-gray-200">
           <div class="flex items-center px-4">
             <div class="flex-shrink-0">
-              <img class="w-10 h-10 rounded-full" :src="user.imageUrl" alt="" />
+              <img
+                class="w-10 h-10 rounded-full"
+                :src="user.imageUrl"
+                alt=""
+              >
             </div>
             <div class="ml-3">
-              <div class="text-base font-medium text-gray-800">{{ user.name }}</div>
-              <div class="text-sm font-medium text-gray-500">{{ user.email }}</div>
+              <div class="text-base font-medium text-gray-800">
+                {{ user.name }}
+              </div>
+              <div class="text-sm font-medium text-gray-500">
+                {{ user.email }}
+              </div>
             </div>
-            <button type="button" class="flex-shrink-0 p-1 ml-auto text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button
+              type="button"
+              class="flex-shrink-0 p-1 ml-auto text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
               <span class="sr-only">View notifications</span>
-              <BellIcon class="w-6 h-6" aria-hidden="true" />
+              <BellIcon
+                class="w-6 h-6"
+                aria-hidden="true"
+              />
             </button>
           </div>
           <div class="mt-3 space-y-1">
-            <DisclosureButton v-for="item in userNavigation" :key="item.name" as="a" :href="item.href" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">{{ item.name }}</DisclosureButton>
+            <DisclosureButton
+              v-for="item in userNavigation"
+              :key="item.name"
+              as="a"
+              :href="item.href"
+              class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+            >
+              {{ item.name }}
+            </DisclosureButton>
           </div>
         </div>
       </DisclosurePanel>
@@ -81,7 +158,9 @@
     <div class="py-10">
       <header>
         <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold leading-tight text-gray-900">Dashboard</h1>
+          <h1 class="text-3xl font-bold leading-tight text-gray-900">
+            Dashboard
+          </h1>
         </div>
       </header>
       <main>

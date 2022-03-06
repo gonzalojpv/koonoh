@@ -1,19 +1,24 @@
 <template>
-  <h1 class="text-2xl font-bold">Welcome to Vue3Stackter, {{ name }}</h1>
+  <h1 class="text-2xl font-bold">
+    Welcome to Vue3Stackter, {{ name }}
+  </h1>
   <div class="mt-8">
     <input
-            v-model="newName"
-            type="text"
-            class="p-2 border border-gray-300 rounded focus:ring-2"
-        />
-        <v-button
-            :class="{ 'pointer-events-none opacity-40': !newName }"
-            @click="saveName"
-        >
-            Save
-        </v-button>
-      </div>
-      <ProductsGrid title="Products" :items="productsList" />
+      v-model="newName"
+      type="text"
+      class="p-2 border border-gray-300 rounded focus:ring-2"
+    >
+    <v-button
+      :class="{ 'pointer-events-none opacity-40': !newName }"
+      @click="saveName"
+    >
+      Save
+    </v-button>
+  </div>
+  <ProductsGrid
+    title="Products"
+    :items="productsList"
+  />
 </template>
 
 <script setup>

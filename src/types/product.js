@@ -7,6 +7,8 @@ export const product = {
     imageAlt: 'ski-coat_lynda_29940',
     imageSrc:
         'https://hplussport.com/wp-content/uploads/2016/12/ski-coat_LYNDA_29940.jpg',
+    createdAt: '',
+    status: '',
 }
 
 export const products = [
@@ -19,6 +21,8 @@ export const products = [
         imageAlt: 'slicker-jacket_lynda_29941',
         imageSrc:
             'https://hplussport.com/wp-content/uploads/2016/12/slicker-jacket_LYNDA_29941.jpg',
+        createdAt: '',
+        status: '',
     },
     {
         id: '530',
@@ -29,5 +33,7 @@ export const products = [
         imageAlt: 'ski-coat_lynda_29940',
         imageSrc:
             'https://hplussport.com/wp-content/uploads/2016/12/ski-coat_LYNDA_29940.jpg',
+        createdAt: '',
+        status: '',
     },
 ]
