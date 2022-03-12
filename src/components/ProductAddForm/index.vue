@@ -24,15 +24,16 @@
               <input 
                 id="product-name"
                 v-model="form.name" 
-                type="email" 
+                type="text" 
                 name="product-name"
                 :class="{ 'is-invalid': v$.name.$errors.length }"
                 autocomplete="email" 
                 class="block w-full form-control"
+                @blur="v$.name.$touch()"
               >
               <p
                 v-for="error of v$.name.$errors"
-                v-show="v$.email.$error"
+                v-show="v$.name.$error"
                 :key="error.$uid"
                 class="block mt-1 text-sm text-left text-red-500"
               >
@@ -78,7 +79,7 @@
               <label
                 for="product-price"
                 class="block text-sm font-medium text-gray-700"
-              >Price</label>
+              >Price*</label>
               <div class="mt-1">
                 <input
                   id="product-price"
@@ -86,7 +87,17 @@
                   type="text"
                   name="product-price"
                   class="block w-full form-control"
+                  :class="{ 'is-invalid': v$.price.$errors.length }"
+                  @input="v$.price.$touch()"
                 >
+                <p
+                v-for="error of v$.price.$errors"
+                v-show="v$.price.$error"
+                :key="error.$uid"
+                class="block mt-1 text-sm text-left text-red-500"
+              >
+                {{ error.$message }}
+              </p>
               </div>
             </div>
           </div>
@@ -173,4 +184,14 @@ const rules = computed(() => {
 })
 
 const v$ = useVuelidate(rules, form)
+
+const onSubmit = (evt) => {
+  console.log('Tocu')
+  evt.preventDefault()
+  v$.value.$touch()
+
+  if (!v$.value.$invalid) {
+    console.log('onSubmit')
+  }
+}
 </script>

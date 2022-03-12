@@ -1,10 +1,10 @@
 <template>
-    <metainfo>
-        <template #title="{ content }">
-            {{ content ? `${content} | ${siteName}` : siteName }}
-        </template>
-    </metainfo>
-    <router-view />
+  <metainfo>
+    <template #title="{ content }">
+      {{ content ? `${content} | ${siteName}` : siteName }}
+    </template>
+  </metainfo>
+  <router-view />
 </template>
 
 <script setup>

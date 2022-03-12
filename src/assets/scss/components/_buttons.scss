@@ -7,6 +7,10 @@
   &:focus {
     @apply outline-none ring-2 ring-offset-2 ring-indigo-500;
   }
+
+  &:disabled {
+    @apply bg-opacity-50 hover:bg-opacity-50;
+  }
 }
 
 .btn-secondary {
@@ -19,6 +23,10 @@
   &:hover {
     @apply bg-indigo-200;
   }
+
+  &:disabled {
+    @apply bg-opacity-50 hover:bg-opacity-50;
+  }
 }
 
 .btn-white {
@@ -30,5 +38,9 @@
 
   &:hover {
     @apply bg-gray-50;
+  }
+
+  &:disabled {
+    @apply bg-opacity-50 hover:bg-opacity-50;
   }
 }
