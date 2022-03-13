@@ -91,13 +91,13 @@
                   @input="v$.price.$touch()"
                 >
                 <p
-                v-for="error of v$.price.$errors"
-                v-show="v$.price.$error"
-                :key="error.$uid"
-                class="block mt-1 text-sm text-left text-red-500"
-              >
-                {{ error.$message }}
-              </p>
+                  v-for="error of v$.price.$errors"
+                  v-show="v$.price.$error"
+                  :key="error.$uid"
+                  class="block mt-1 text-sm text-left text-red-500"
+                >
+                  {{ error.$message }}
+                </p>
               </div>
             </div>
           </div>

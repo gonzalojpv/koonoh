@@ -26,9 +26,10 @@ import ProductsGrid from '~/components/ProductsGrid/index.vue'
 import { products } from '~/types/product'
 
 import { useMeta } from 'vue-meta'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { useActions } from 'vuex-use'
 
 useMeta({
     title: 'Homepage',
@@ -37,7 +38,7 @@ useMeta({
 const router = useRouter()
 
 const store = useStore()
-
+const { fetchAllProducts } = useActions('product')
 // name
 // const name = computed(() => store.state.user.name)
 const name = computed(() => store.getters['user/nameUppercased'])
@@ -52,4 +53,8 @@ function saveName() {
 }
 
 const productsList = ref(products)
+
+onMounted(() => {
+  fetchAllProducts({ name: null, brand: null })
+})
 </script>
