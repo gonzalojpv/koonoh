@@ -1,58 +1,44 @@
 <template>
-  <h1 class="text-2xl font-bold">
-    Welcome to Vue3Stackter, {{ name }}
-  </h1>
-  <div class="mt-8">
-    <input
-      v-model="newName"
-      type="text"
-      class="p-2 border border-gray-300 rounded focus:ring-2"
-    >
-    <v-button
-      :class="{ 'pointer-events-none opacity-40': !newName }"
-      @click="saveName"
-    >
-      Save
-    </v-button>
-  </div>
+  <ProductSearch
+    class="mb-10"
+    @search="onSearch"
+  />
   <ProductsGrid
     title="Products"
-    :items="productsList"
+    :items="searchedProducts"
   />
 </template>
 
 <script setup>
+import ProductSearch from '~/components/ProductSearch/index.vue'
 import ProductsGrid from '~/components/ProductsGrid/index.vue'
-import { products } from '~/types/product'
 
 import { useMeta } from 'vue-meta'
-import { computed, onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-import { useActions } from 'vuex-use'
+import { onMounted, ref, computed } from 'vue'
+import { useActions, useGetters } from 'vuex-use'
 
 useMeta({
     title: 'Homepage',
 })
 
-const router = useRouter()
-
-const store = useStore()
 const { fetchAllProducts } = useActions('product')
-// name
-// const name = computed(() => store.state.user.name)
-const name = computed(() => store.getters['user/nameUppercased'])
-const newName = ref('')
-function saveName() {
-    if (newName.value === '') {
-        return
-    }
-    store.dispatch('user/saveName', newName.value)
-    newName.value = ''
-    router.push(`/about/${name.value}`)
+const { getAllProducts } = useGetters('product')
+
+const searchQuery = ref('')
+
+const onSearch = (form) => {
+  searchQuery.value = form.query
 }
 
-const productsList = ref(products)
+const searchedProducts = computed(() => {
+  return getAllProducts.value.filter((prize) => {
+    return (
+    prize.name
+      .toLowerCase()
+      .indexOf(searchQuery.value.toLowerCase()) != -1
+    )
+  })
+})
 
 onMounted(() => {
   fetchAllProducts({ name: null, brand: null })

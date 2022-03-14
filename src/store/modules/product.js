@@ -15,7 +15,6 @@ export const getters = {
 }
 
 export const actions = {
-    // eslint-disable-next-line no-unused-vars
     async fetchAllProducts({ commit }, { name, bran }) {
         // eslint-disable-next-line no-undef
         blockspring.runParsed(
