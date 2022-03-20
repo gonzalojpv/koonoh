@@ -2,6 +2,7 @@
   <ProductSearch
     class="mb-10"
     @search="onSearch"
+    @clear="onSearch"
   />
   <ProductsGrid
     title="Products"

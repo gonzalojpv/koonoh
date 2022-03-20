@@ -22,7 +22,7 @@ export const actions = {
             { name, bran },
             { api_key: 'br_169014_e1dc2a9c1aa386609961eae7619f55da57abc038' },
             function (res) {
-                console.log(res.params)
+                console.log('Aqui', res.params)
                 commit('SET_PRODUCTS', res.params.products)
             }
         )

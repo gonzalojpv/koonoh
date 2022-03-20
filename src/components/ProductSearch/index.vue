@@ -19,6 +19,7 @@
         :class="{ 'is-invalid': v$.query.$errors.length }"
         placeholder="Search products"
         type="search"
+        @input="onClear"
       >
     </div>
   </form>
@@ -31,7 +32,7 @@ import { SearchIcon } from '@heroicons/vue/outline'
 import { required } from '@vuelidate/validators'
 import { reactive, computed } from 'vue';
 
-const emit = defineEmits(['search'])
+const emit = defineEmits(['search', 'clear'])
 
 const form = reactive({
   query: null,
@@ -51,6 +52,12 @@ const onSearch = () => {
 
   if (!v$.value.$invalid) {
     emit('search', form)
+  }
+}
+
+const onClear = (evt) => {
+  if (!evt.target.value) {
+    emit('clear', form)
   }
 }
 </script>
